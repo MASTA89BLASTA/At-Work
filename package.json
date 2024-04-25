@@ -1,0 +1,71 @@
+{
+  "name": "react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --open",
+    "build": "webpack"
+  },
+  "engines": {
+    "node": "<=v18.17.1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.9.7",
+    "react": "^18.2.0",
+    "react-redux": "^7.2.6",
+    "react-router-dom": "^6.2.1",
+    "reselect": "^4.1.5",
+    "styled-components": "^6.1.8"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.2",
+    "@babel/plugin-transform-runtime": "^7.17.0",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-react": "^7.22.15",
+    "@babel/preset-typescript": "^7.23.2",
+    "@babel/runtime": "^7.17.2",
+    "@types/lodash": "^4.14.202",
+    "@types/react": "^18.2.25",
+    "@types/react-dom": "^18.2.11",
+    "babel-loader": "^8.0.5",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "css-loader": "^6.11.0",
+    "file-loader": "^6.2.0",
+    "group-css-media-queries-loader": "^4.3.0",
+    "mini-css-extract-plugin": "^2.9.0",
+    "node-sass": "^9.0.0",
+    "postcss-loader": "^8.1.1",
+    "postcss-preset-env": "^9.5.9",
+    "react-dom": "^18.2.0",
+    "resolve-url-loader": "^5.0.0",
+    "sass": "^1.75.0",
+    "sass-loader": "^14.2.1",
+    "style-loader": "^3.3.4",
+    "ts-loader": "^9.5.0",
+    "typescript": "^5.2.2",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.2"
+  },
+  "babel": {
+    "presets": [
+      "@babel/env",
+      "@babel/react"
+    ],
+    "plugins": [
+      "syntax-dynamic-import",
+      [
+        "@babel/plugin-transform-runtime",
+        {
+          "regenerator": true
+        }
+      ]
+    ]
+  },
+  "optionalDependencies": {
+    "mini-css-extract-plugin": "^2.7.6"
+  }
+}
