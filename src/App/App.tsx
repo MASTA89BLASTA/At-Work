@@ -1,5 +1,5 @@
 import React from "react";
-import Main from "./Main";
+import MainPage from "./MainPage";
 import Header from "./Header";
 import "./App.scss"
 
@@ -9,7 +9,7 @@ function App(): JSX.Element {
   return (
     <>
       <Header />
-      <Main />
+      <MainPage />
     </>
   );
 }
