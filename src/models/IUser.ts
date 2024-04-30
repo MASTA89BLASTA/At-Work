@@ -1,9 +1,19 @@
-export interface IUser {
+interface IAddress {
+  city: string;
+}
+
+interface ICompany {
+  name: string;
+}
+
+interface IUser {
   id:number;
   name: string;
-  nickName: string;
+  username: string;
   email: string;
-  city: string;
   telephone: string;
-  companyName: string;
+  address: IAddress;
+  company: ICompany; 
 }
+
+export type { IUser, IAddress, ICompany };

@@ -1,0 +1,50 @@
+@import "../../../App/vars.scss";
+
+.userCard {
+  width: 360px;
+  height: 168px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $color-ultra-light-gray;
+  border-radius: 16px;
+  margin-bottom: 20px;
+  gap: 20px;
+}
+
+.userCard-info_wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.userImg {
+  width: 112px;
+  height: 120px;
+  border-radius: 8px;
+}
+.userCard-username {
+  color: $color-blue;
+}
+.material-icons_color {
+  color: $color-dark-gray;
+  &:hover {
+    color: $color-blue;
+  }
+}
+
+.dropdown-container {
+  position: relative; // чтобы правильно позиционировать выпадающее меню
+}
+
+.dropdown-menu {
+  position: absolute;
+  width: 200px;
+  height: 146px;
+  top: 100%;
+  left: 0;
+  display: none; 
+}
+
+.dropdown-container.open, .dropdown-menu {
+  display: block; 
+}

@@ -1,12 +1,26 @@
 import Active from "features/components/Active";
-import Arhive from "features/components/Arhive";
-import React from "react";
+import Archive from "features/components/Archive";
+import { useAppSelector, useHandleActive, useHandleArchive } from "hooks/redux";
+import React, { useState } from "react";
 
 function MainPage(): JSX.Element {
+  const archivedUsers = useAppSelector(
+    state => state.userReducer.archivedUsers
+  );
+
+  const handleArchive = useHandleArchive();
+  const handleActive = useHandleActive();
+
   return (
     <main className="main">
-      <Active />
-      <Arhive />
+      <Active onArchive={handleArchive}
+        onActivate={handleActive} 
+        />
+      <Archive
+        archivedUsers={archivedUsers}
+        onArchive={handleArchive}
+        onActivate={handleActive}
+      />
     </main>
   );
 }

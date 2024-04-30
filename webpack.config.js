@@ -1,5 +1,5 @@
 const path = require("path");
-
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 // const CopyPlugin = require('copy-webpack-plugin');
 
@@ -18,6 +18,7 @@ module.exports = {
     clean: true,
     filename: "./main.js",
     chunkFilename: "[name].bundle.js",
+    assetModuleFilename: "assets/[name][ext]",
   },
   devServer: {
     static: {
@@ -29,6 +30,9 @@ module.exports = {
     // progress: true,
   },
   plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, "src", "index.html"),
+    }),
     new MiniCssExtractPlugin({
       filename: "[name].[contenthash].css",
     }),
@@ -127,4 +131,3 @@ module.exports = {
     extensions: [".ts", ".tsx", ".js", ".jsx"],
   },
 };
-

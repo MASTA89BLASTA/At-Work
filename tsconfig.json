@@ -9,8 +9,11 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "moduleResolution": "node",
-    "outDir": "dist", 
-    "baseUrl": "src"
+    "outDir": "dist",
+    "baseUrl": "src",
+    "typeRoots": ["./node_modules/@types"],
+    "resolveJsonModule": true
   },
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "src/**/*.png"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.json"]
 }
