@@ -33,7 +33,8 @@
 }
 
 .dropdown-container {
-  position: relative; // чтобы правильно позиционировать выпадающее меню
+  position: relative;
+  cursor: pointer;
 }
 
 .dropdown-menu {
@@ -42,9 +43,10 @@
   height: 146px;
   top: 100%;
   left: 0;
-  display: none; 
+  display: none;
 }
 
-.dropdown-container.open, .dropdown-menu {
-  display: block; 
+.dropdown-container.open,
+.dropdown-menu {
+  display: block;
 }

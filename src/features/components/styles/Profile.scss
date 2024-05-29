@@ -1,5 +1,36 @@
 @import "../../../App/vars.scss";
 
+.profile-page {
+  background-color: #f4f4f4;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-page_wrapper {
+  display: flex;
+  justify-content: center;
+  justify-content: space-evenly;
+}
+
+.profile-page_back {
+  display: flex;
+  cursor: pointer;
+  height: 68px;
+  width: 63%;
+  align-items: center;
+  color: $color-medium-gray;
+}
+.profile-page_back-text {
+  margin-left: 18px;
+}
+.profile-page_btn-back {
+  font-size: 20px;
+}
+
 .profile-settings,
 .profile-data {
   width: 360px;
@@ -13,6 +44,7 @@
 
 .profile-data {
   width: 760px;
+  margin-left: 40px;
 }
 
 .profile-data_h1 {
@@ -39,4 +71,14 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+}
+
+.profile-data_form-group {
+  display: flex;
+  flex-direction: column;
+  margin-top: 25px;
+}
+
+.profile-data_label {
+  font-size: 18px;
 }

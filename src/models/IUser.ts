@@ -11,7 +11,7 @@ interface IUser {
   name: string;
   username: string;
   email: string;
-  telephone: string;
+  phone: string;
   address: IAddress;
   company: ICompany; 
 }

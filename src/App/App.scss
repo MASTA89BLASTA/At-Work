@@ -1,5 +1,4 @@
-.main,
-.profile-page {
+.main {
   background-color: #f4f4f4;
   height: 100%;
   width: 100%;
@@ -8,8 +7,4 @@
   flex-direction: column;
 }
 
-.profile-page_wrapper {
-  display: flex;
-  justify-content: center;
-  justify-content: space-evenly;
-}
+

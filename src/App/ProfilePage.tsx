@@ -18,25 +18,27 @@ function ProfilePage(): JSX.Element {
   if (profileId) {
     user = users.find(user => user.id === +profileId);
   }
-  
+
   const handleClick = (): void => {
     navigate(-1);
   };
 
   return (
     <div className="profile-page">
-      <span
-        className="material-icons profile-page_btn-back"
-        onClick={handleClick}
-      >
-        arrow_back
-      </span>
-      <span className="back-text" onClick={handleClick}>
-        Назад
-      </span>
+      <div className="profile-page_back">
+        <span
+          className="material-icons profile-page_btn-back"
+          onClick={handleClick}
+        >
+          arrow_back
+        </span>
+        <span className="profile-page_back-text" onClick={handleClick}>
+          Назад
+        </span>
+      </div>
       <div className="profile-page_wrapper">
         <ProfileSettings />
-        <ProfileData />
+        <ProfileData user={user} />
       </div>
     </div>
   );

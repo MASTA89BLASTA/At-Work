@@ -11,6 +11,7 @@ function App(): JSX.Element {
       <Route element={<Layout />}>
         <Route path="/" element={<MainPage />} />
         <Route path="/profile/:profileId" element={<ProfilePage />} />
+        {/* <Route path="/" element={<ProfilePage />} /> */}
       </Route>
     </Routes>
   );
