@@ -1,29 +1,19 @@
 import React from "react";
 import UserList from "./UserList";
-
 import { IUser } from "models/IUser";
-import { useAppDispatch, useAppSelector } from "hooks/redux";
-import { archiveUser, activateUser } from "store/reducers/UserSlice";
+import { useAppSelector } from "hooks/redux";
+
 
 interface ArchiveProps {
   archivedUsers: IUser[];
-  onArchive: (userId: number) => void;
   onActivate: (userId: number) => void;
 }
 
 function Archive({
   archivedUsers,
+  onActivate
 }: ArchiveProps): JSX.Element {
-  const dispatch = useAppDispatch();
-  const { isLoading, error } = useAppSelector(state => state.userReducer);
-
-  const handleArchive = (userId: number) => {
-    dispatch(archiveUser(userId));
-  };
-
-  const handleActivate = (userId: number) => {
-    dispatch(activateUser(userId)); 
-  };
+  const { isLoading} = useAppSelector(state => state.userReducer);
 
   return (
     <div className="arhive-Users_wrapper">
@@ -33,8 +23,7 @@ function Archive({
         {archivedUsers.length > 0 ? (
           <UserList
             users={archivedUsers}
-            onArchive={handleArchive}
-            onActivate={handleActivate}
+            onActivate={onActivate}
             isInArchive={true}
           />
         ) : (

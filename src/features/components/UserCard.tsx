@@ -28,9 +28,6 @@ function UserCard({
     setShowDropdown(!showDropdown);
   };
 
-  const handleEdit = () => {
-    console.log("Редактировать");
-  };
   const handleArchive = () => {
     if (onArchive) {
       onArchive(user.id);

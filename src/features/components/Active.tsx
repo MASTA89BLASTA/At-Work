@@ -1,14 +1,7 @@
 import React, { useEffect } from "react";
-import {
-  useAppDispatch,
-  useAppSelector,
-  useHandleActive,
-  useHandleArchive,
-} from "hooks/redux";
-import { fetchUsers } from "store/reducers/ActionCreators";
+import { useAppSelector } from "hooks/redux";
 import UserList from "./UserList";
 import "./styles/Active.scss";
-import { archiveUser } from "store/reducers/UserSlice";
 
 interface ActiveProps {
   onArchive: (userId: number) => void;
@@ -16,15 +9,7 @@ interface ActiveProps {
 }
 
 function Active({ onArchive, onActivate }: ActiveProps): JSX.Element {
-  const dispatch = useAppDispatch();
-
-  const { users, isLoading, error } = useAppSelector(
-    state => state.userReducer
-  );
-
-  useEffect(() => {
-    dispatch(fetchUsers());
-  }, [dispatch]);
+  const { users, isLoading } = useAppSelector(state => state.userReducer);
 
   return (
     <div className="active-Users_wrapper">

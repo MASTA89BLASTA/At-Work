@@ -3,7 +3,7 @@ import userReducer from "./reducers/UserSlice"
 
 
 const rootReducer = combineReducers({
-  userReducer
+  userReducer,
 })
 
 export const setupStore = () => {
