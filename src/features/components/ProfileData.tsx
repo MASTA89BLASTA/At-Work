@@ -3,7 +3,13 @@ import "./styles/Profile.scss";
 import MyInput from "./UI/input/MyInput";
 import { IUser } from "models/IUser";
 import MyButton from "./UI/button/MyButton";
-import { setFormData, handleFormChange, handleNestedFormChange } from "../../store/reducers/UserSlice";
+import {
+  setFormData,
+  handleFormChange,
+  handleNestedFormChange,
+  setFormError
+} from "../../store/reducers/UserSlice";
+import { cleanPhoneNumber } from "features/utils/utils";
 import { useAppDispatch, useAppSelector } from "hooks/redux";
 
 interface ProfileDataProps {
@@ -13,43 +19,57 @@ interface ProfileDataProps {
 
 function ProfileData({ user, onSave }: ProfileDataProps): JSX.Element {
   const dispatch = useAppDispatch();
-  const formData = useAppSelector((state) => state.userReducer.formData);
-  const [error, setError] = useState<string>("");
+  const formData = useAppSelector(state => state.userReducer.formData);
+  const formError = useAppSelector(state => state.userReducer.formError)
 
   useEffect(() => {
     dispatch(setFormData(user || null));
   }, [user, dispatch]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { id, value } = e.target;
+  useEffect(() => {
+    setFormError();
+  }, [formData]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>, id: string) => {
+    const { value } = e.target;
     dispatch(handleFormChange({ id, value }));
+    setFormError();;
+
   };
 
-  const handleNestedChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { id, value } = e.target;
-    const [parentKey, childKey] = id.split('.') as [keyof IUser, string];
+  const handleNestedChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    id: string
+  ) => {
+    const { value } = e.target;
+    const [parentKey, childKey] = id.split(".") as [keyof IUser, string];
     dispatch(handleNestedFormChange({ parentKey, childKey, value }));
+    setFormError();
   };
 
   const handleSave = () => {
-    if (!formData || Object.values(formData).some((value) => typeof value === "string" && value === "")) {
-      setError("Заполните все поля");
+    if (formError) {
+      dispatch(setFormError());
       return;
     }
-    setError("");
     onSave(formData);
   };
 
-  const cleanPhoneNumber = (phone: string) => {
-    const clean = phone.indexOf("x");
-    return clean !== -1 ? phone.substring(0, clean).trim() : phone;
+  const handleClear = (id: string) => {
+    dispatch(handleFormChange({ id, value: "" }));
+    setFormError();
   };
+  const handleNestedClear = (id: string) => {
+    const [parentKey, childKey] = id.split(".") as [keyof IUser, string];
+    dispatch(handleNestedFormChange({ parentKey, childKey, value: "" }));
+  };
+
 
   return (
     <div className="profile-data">
       <div className="profile-data_wrapper">
         <h1 className="profile-data_h1">Данные профиля</h1>
-        {error && <p className="profile-data_error">{error}</p>}
+        
         <form action="">
           <div className="profile-data_form-group">
             <label className="profile-data_label" htmlFor="name">
@@ -57,8 +77,9 @@ function ProfileData({ user, onSave }: ProfileDataProps): JSX.Element {
             </label>
             <MyInput
               id="name"
-              value={formData?.name || ''}
-              onChange={handleChange}
+              value={formData?.name || ""}
+              onChange={e => handleChange(e, "name")}
+              onClear={() => handleClear("name")}
             />
           </div>
           <div className="profile-data_form-group">
@@ -67,8 +88,9 @@ function ProfileData({ user, onSave }: ProfileDataProps): JSX.Element {
             </label>
             <MyInput
               id="username"
-              value={formData?.username || ''}
-              onChange={handleChange}
+              value={formData?.username || ""}
+              onChange={e => handleChange(e, "username")}
+              onClear={() => handleClear("username")}
             />
           </div>
           <div className="profile-data_form-group">
@@ -77,8 +99,9 @@ function ProfileData({ user, onSave }: ProfileDataProps): JSX.Element {
             </label>
             <MyInput
               id="email"
-              value={formData?.email || ''}
-              onChange={handleChange}
+              value={formData?.email || ""}
+              onChange={e => handleChange(e, "email")}
+              onClear={() => handleClear("email")}
             />
           </div>
           <div className="profile-data_form-group">
@@ -87,8 +110,9 @@ function ProfileData({ user, onSave }: ProfileDataProps): JSX.Element {
             </label>
             <MyInput
               id="address.city"
-              value={formData?.address.city || ''}
-              onChange={handleNestedChange}
+              value={formData?.address.city || ""}
+              onChange={e => handleNestedChange(e, "address.city")}
+              onClear={() => handleNestedClear("address.city")}
             />
           </div>
           <div className="profile-data_form-group">
@@ -97,8 +121,9 @@ function ProfileData({ user, onSave }: ProfileDataProps): JSX.Element {
             </label>
             <MyInput
               id="phone"
-              value={cleanPhoneNumber(formData?.phone || '')}
-              onChange={handleChange}
+              value={cleanPhoneNumber(formData?.phone || "")}
+              onChange={e => handleChange(e, "phone")}
+              onClear={() => handleClear("phone")}
             />
           </div>
           <div className="profile-data_form-group">
@@ -107,10 +132,12 @@ function ProfileData({ user, onSave }: ProfileDataProps): JSX.Element {
             </label>
             <MyInput
               id="company.name"
-              value={formData?.company.name || ''}
-              onChange={handleNestedChange}
+              value={formData?.company.name || ""}
+              onChange={e => handleNestedChange(e, "company.name")}
+              onClear={() => handleNestedClear("company.name")}
             />
           </div>
+          {formError && <p className="profile-data_error">{formError}</p>}
           <MyButton className="profile-data_button" onClick={handleSave}>
             Сохранить
           </MyButton>

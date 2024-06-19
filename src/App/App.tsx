@@ -9,9 +9,9 @@ function App(): JSX.Element {
   return (
     <Routes>
       <Route element={<Layout />}>
-        {/* <Route path="/" element={<MainPage />} />
-        <Route path="/profile/:profileId" element={<ProfilePage />} /> */}
-        <Route path="/" element={<ProfilePage />} />
+        <Route path="/" element={<MainPage />} />
+        <Route path="/profile/:profileId" element={<ProfilePage />} />
+        {/* <Route path="/" element={<ProfilePage />} /> */}
       </Route>
     </Routes>
   );

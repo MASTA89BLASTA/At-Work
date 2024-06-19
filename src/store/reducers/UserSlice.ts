@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { IUser } from "models/IUser";
+import { checkFormValidity } from "features/utils/utils";
 
 interface UserState {
   users: IUser[];
@@ -7,6 +8,7 @@ interface UserState {
   isLoading: boolean;
   error: string;
   formData: IUser | null;
+  formError: string;
 }
 
 const initialState: UserState = {
@@ -15,6 +17,7 @@ const initialState: UserState = {
   isLoading: false,
   error: "",
   formData: null,
+  formError: "",
 };
 
 export const userSlice = createSlice({
@@ -45,11 +48,11 @@ export const userSlice = createSlice({
       const userId = action.payload;
       const userToActivate = state.archivedUsers.find(
         user => user.id === userId
-      ); // И здесь
+      ); 
       if (userToActivate) {
         state.archivedUsers = state.archivedUsers.filter(
           user => user.id !== userId
-        ); // И здесь
+        ); 
         state.users.push(userToActivate);
       }
     },
@@ -75,14 +78,19 @@ export const userSlice = createSlice({
       const { id, value } = action.payload;
       if (state.formData) {
         state.formData = { ...state.formData, [id]: value };
+        state.formError = checkFormValidity(state.formData);
       }
     },
     handleNestedFormChange(state, action: PayloadAction<{ parentKey: keyof IUser; childKey: string; value: string }>) {
       const { parentKey, childKey, value } = action.payload;
       if (state.formData && state.formData[parentKey] && typeof state.formData[parentKey] === 'object') {
         (state.formData[parentKey] as any)[childKey] = value;
+        state.formError = checkFormValidity(state.formData);
       }
-    }
+    },
+    setFormError(state, action: PayloadAction<string>) {
+      state.formError = action.payload;
+    },
   },
 });
 
@@ -94,6 +102,7 @@ export const {
   setFormData,
   handleFormChange,
   handleNestedFormChange,
+  setFormError,
 } = userSlice.actions;
 
 export default userSlice.reducer;

@@ -52,13 +52,16 @@
 }
 
 .profile-userImg,
-.profile-settings-categories {
+.profile-settings_categories {
   width: 280px;
   height: 485px;
   border-radius: 8px;
 }
-.profile-settings-categories {
+.profile-settings_categories {
   height: 208px;
+}
+.profile-settings_items {
+  list-style-type: none;
 }
 
 .profile-data {
@@ -102,41 +105,41 @@
   font-size: 18px;
 }
 
-//Modal
+.profile-data_error {
+  color: red;
+  margin-bottom: 0;
+  margin-top: 10px;
+  font-size: 1.2em;
+}
 
 .myInput-container {
   position: relative;
   display: inline-block;
-  width: 420px;
+  width: 100%;
 
   .myInput {
-    width: 100%;
+    width: calc(100% - 32px);
     border: 2px solid $color-very-light-gray;
     border-radius: 50px;
     padding: 11px 8px 11px 16px;
     margin-top: 15px;
-    &:focus {
-      outline: none;
-    }
   }
 
   .myInput-clear-icon {
     position: absolute;
-    right: 0px;
+    right: 8px;
     font-size: 16px;
     top: 50%;
-    transform: translateY(4%) translateX(80%);
-    cursor: pointer;
-    display: none;
+    transform: translateY(-50%);
     color: $color-medium-gray;
-    outline: none !important;
+    z-index: 1;
   }
 
   &.active .myInput-clear-icon {
     display: block;
   }
 }
-
+//Modal
 .modal {
   display: flex;
   justify-content: center;

@@ -1,39 +1,65 @@
 import React, { useRef, useState } from "react";
-
 import "../input/MyInput.scss";
+import { handleClear } from "features/utils/utils";
 
-interface MyInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+interface MyInputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange"> {
   id: string;
+  onClear?: () => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>, id: string) => void;
 }
 
-const MyInput = React.forwardRef<HTMLInputElement, MyInputProps>(
-  (props, ref) => {
-    const [isActive, setActive] = useState(false);
-    const inputRef = useRef<HTMLInputElement>(null);
+const MyInput: React.FC<MyInputProps> = ({
+  id,
+  onClear,
+  value,
+  onChange,
+  ...props
+}) => {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [isFocused, setIsFocused] = useState<boolean>(false);
+  const [showClear, setShowClear] = useState<boolean>(!!value);
 
-    const handleFocus = () => {
-      setActive(true);
-    };
+  const handleFocus = () => {
+    setIsFocused(true);
+    setShowClear(!!value);
+  };
 
-    const handleBlur = () => {
-      setActive(false);
-    };
+  const handleBlur = () => {
+    setIsFocused(false);
+    setShowClear(false);
+  };
 
-    return (
-      <div className={`myInput-container ${isActive ? "active" : ""}`}>
-        <input
-          ref={inputRef}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          className="myInput"
-          {...props}
-        />
-        {isActive && (
-          <span className="material-icons myInput-clear-icon">close</span>
-        )}
-      </div>
-    );
-  }
-);
+  const handleInputClear = () => {
+    handleClear(inputRef, onClear, onChange, id);
+    setShowClear(false);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (onChange) onChange(e, id);
+    setShowClear(!!e.target.value);
+  };
+
+  return (
+    <div className={`myInput-container ${isFocused ? "active" : ""}`}>
+      <input
+        ref={inputRef}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        className="myInput"
+        value={value}
+        onChange={handleChange}
+        {...props}
+      />
+      {showClear && (
+        <span
+          className="material-icons myInput-clear-icon"
+          onMouseDown={handleInputClear}
+        >
+          close
+        </span>
+      )}
+    </div>
+  );
+};
 
 export default MyInput;
