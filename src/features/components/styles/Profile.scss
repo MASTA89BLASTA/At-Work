@@ -51,6 +51,15 @@
   justify-content: center;
 }
 
+.profile-settings_items li {
+  cursor: pointer;
+  color: $color-light-gray; 
+}
+
+.profile-settings_items li.selected {
+  color: $color-dark-gray;
+}
+
 .profile-userImg,
 .profile-settings_categories {
   width: 280px;

@@ -1,11 +1,13 @@
-import ProfileData from "features/components/ProfileData";
-import ProfileSettings from "features/components/ProfileSettings";
+import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "hooks/redux";
 import { IUser } from "../models/IUser";
-import React from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { updateUser } from "store/reducers/UserSlice";
-import { useEffect, useState } from "react";
+import ProfileData from "features/components/ProfileData";
+import ProfileSettings from "features/components/ProfileSettings";
+import Workspace from "features/components/Workspace";
+import Privacy from "features/components/Privacy";
+import Security from "features/components/Security";
 import MyButton from "features/components/UI/button/MyButton";
 
 function ProfilePage(): JSX.Element {
@@ -16,6 +18,7 @@ function ProfilePage(): JSX.Element {
   const location = useLocation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [user, setUser] = useState<IUser | undefined>(undefined);
+  const [selectedCategory, setSelectedCategory] = useState<string>("profileData");
 
   useEffect(() => {
     if (profileId) {
@@ -41,6 +44,21 @@ function ProfilePage(): JSX.Element {
   const handleClick = (): void => {
     navigate(-1);
   };
+  const renderContent = () => {
+    switch (selectedCategory) {
+      case "profileData":
+        return user ? <ProfileData user={user} onSave={handleSave} /> : <p>Загрузка данных пользователя...</p>;
+      case "workspace":
+        return <Workspace />;
+      case "privacy":
+        return <Privacy />;
+      case "security":
+        return <Security />;
+      default:
+        return null;
+    }
+  };
+
 
 
   return (
@@ -57,12 +75,8 @@ function ProfilePage(): JSX.Element {
         </span>
       </div>
       <div className="profile-page_wrapper">
-        <ProfileSettings />
-        {user ? (
-          <ProfileData user={user} onSave={handleSave} />
-        ) : (
-          <p>Загрузка данных пользователя...</p>
-        )}
+        <ProfileSettings onCategoryChange={setSelectedCategory} selectedCategory={selectedCategory}/>
+        {renderContent()}
       </div>
       {isModalOpen && (
         <div className="modal">
