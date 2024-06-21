@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import UserList from "./UserList";
 import { IUser } from "models/IUser";
 import { useAppSelector } from "hooks/redux";
@@ -7,13 +7,19 @@ import { useAppSelector } from "hooks/redux";
 interface ArchiveProps {
   archivedUsers: IUser[];
   onActivate: (userId: number) => void;
+  setCurrentUser: (user: IUser) => void; 
 }
 
 function Archive({
   archivedUsers,
-  onActivate
+  onActivate,
+  setCurrentUser
 }: ArchiveProps): JSX.Element {
-  const { isLoading} = useAppSelector(state => state.userReducer);
+  const {users, isLoading} = useAppSelector(state => state.userReducer);
+  
+  useEffect(() => {
+    setCurrentUser(null); 
+  }, [users]);
 
   return (
     <div className="arhive-Users_wrapper">
@@ -24,6 +30,7 @@ function Archive({
           <UserList
             users={archivedUsers}
             onActivate={onActivate}
+            setCurrentUser={setCurrentUser}
             isInArchive={true}
           />
         ) : (

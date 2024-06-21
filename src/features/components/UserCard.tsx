@@ -11,6 +11,7 @@ interface UserCardProps {
   onArchive?: (userId: number) => void;
   onActivate?: (userId: number) => void;
   isInArchive?: boolean;
+  setCurrentUser: (user: IUser | null) => void;
 }
 
 function UserCard({
@@ -18,6 +19,7 @@ function UserCard({
   onArchive,
   onActivate,
   isInArchive,
+  setCurrentUser
 }: UserCardProps): JSX.Element {
   const [showDropdown, setShowDropdown] = useState(false);
   const city = user.address?.city ?? "";
@@ -32,20 +34,27 @@ function UserCard({
     if (onArchive) {
       onArchive(user.id);
     }
+    setCurrentUser(null);
   };
 
   const handleActivate = () => {
     if (onActivate) {
       onActivate(user.id);
+      setCurrentUser(null);
     }
   };
 
   const handleHide = () => {
     dispatch(removeFromActive(user.id));
+    setCurrentUser(null);
+  };
+
+  const handleClick = () => {
+    setCurrentUser(user);
   };
 
   return (
-    <div className="userCard">
+    <div className="userCard" onClick={handleClick}>
       <img className="userImg" src={haroldImage} alt="" />
       <div className="userCard-info_wrapper">
         <span className="userCard-username">{user.name}</span>

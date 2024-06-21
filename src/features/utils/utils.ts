@@ -1,5 +1,7 @@
 import { IUser } from "models/IUser";
 import React from "react";
+import { activateUser, archiveUser } from "store/reducers/UserSlice";
+import { setCurrentUser } from "store/reducers/UserSlice";
 
 export const handleClear = (
   inputRef: React.RefObject<HTMLInputElement>,
@@ -40,4 +42,21 @@ export const checkFormValidity = (formData: IUser | null): string => {
 export const cleanPhoneNumber = (phone: string): string => {
   const clean = phone.indexOf("x");
   return clean !== -1 ? phone.substring(0, clean).trim() : phone;
+};
+
+export const handleUserAction = (
+  userId: number,
+  action: "archive" | "activate",
+  currentUser: IUser | null,
+  dispatch: any 
+) => {
+  if (action === "archive") {
+    dispatch(archiveUser(userId));
+  } else if (action === "activate") {
+    dispatch(activateUser(userId));
+  }
+
+  if (currentUser?.id === userId) {
+    dispatch(setCurrentUser(null)); // Сбрасываем текущего пользователя, если он был выбран
+  }
 };

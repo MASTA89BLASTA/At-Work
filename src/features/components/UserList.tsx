@@ -7,7 +7,7 @@ interface UserListProps {
   users: IUser[];
   onArchive?: (userId: number) => void;
   onActivate?: (userId: number) => void;
-  
+  setCurrentUser: (user: IUser) => void;
   isInArchive?: boolean;
 }
 
@@ -16,7 +16,7 @@ function UserList({
   onArchive,
   onActivate,
   isInArchive,
-
+  setCurrentUser,
 }: UserListProps) {
   console.log("Обработчик активации пользователя в компоненте UserList вызван");
   return (
@@ -29,7 +29,7 @@ function UserList({
             onArchive={onArchive}
             onActivate={onActivate}
             isInArchive={isInArchive}
-
+            setCurrentUser={setCurrentUser}
           />
         ))
       ) : (

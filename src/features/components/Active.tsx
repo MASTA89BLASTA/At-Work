@@ -2,14 +2,20 @@ import React, { useEffect } from "react";
 import { useAppSelector } from "hooks/redux";
 import UserList from "./UserList";
 import "./styles/Active.scss";
+import { IUser } from "models/IUser";
 
 interface ActiveProps {
   onArchive: (userId: number) => void;
   onActivate: (userId: number) => void;
+  setCurrentUser: (user: IUser) => void;
 }
 
-function Active({ onArchive, onActivate }: ActiveProps): JSX.Element {
+function Active({ onArchive, onActivate, setCurrentUser }: ActiveProps): JSX.Element {
   const { users, isLoading } = useAppSelector(state => state.userReducer);
+  
+  useEffect(() => {
+    setCurrentUser(null); 
+  }, [users]);
 
   return (
     <div className="active-Users_wrapper">
@@ -21,6 +27,7 @@ function Active({ onArchive, onActivate }: ActiveProps): JSX.Element {
             users={users}
             onArchive={onArchive}
             onActivate={onActivate}
+            setCurrentUser={setCurrentUser}
           />
         ) : (
           <p>Нет пользователей</p>

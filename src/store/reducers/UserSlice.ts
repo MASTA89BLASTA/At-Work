@@ -9,6 +9,7 @@ interface UserState {
   error: string;
   formData: IUser | null;
   formError: string;
+  currentUser: IUser | null;
 }
 
 const initialState: UserState = {
@@ -18,6 +19,7 @@ const initialState: UserState = {
   error: "",
   formData: null,
   formError: "",
+  currentUser: null,
 };
 
 export const userSlice = createSlice({
@@ -43,6 +45,9 @@ export const userSlice = createSlice({
         state.users = state.users.filter(user => user.id !== userId);
         state.archivedUsers.push(userToArchive);
       }
+      if (state.currentUser && state.currentUser.id === userId) {
+        state.currentUser = null;
+      }
     },
     activateUser(state, action: PayloadAction<number>) {
       const userId = action.payload;
@@ -59,6 +64,9 @@ export const userSlice = createSlice({
     removeFromActive(state, action: PayloadAction<number>) {
       const userId = action.payload;
       state.users = state.users.filter(user => user.id !== userId);
+      if (state.currentUser && state.currentUser.id === userId) {
+        state.currentUser = null;
+      }
     },
     updateUser(state, action: PayloadAction<IUser>) {
       const updatedUser = action.payload;
@@ -91,6 +99,12 @@ export const userSlice = createSlice({
     setFormError(state, action: PayloadAction<string>) {
       state.formError = action.payload;
     },
+    setCurrentUser(state, action: PayloadAction<IUser | null>) {
+      state.currentUser = action.payload;
+    },
+    clearCurrentUser(state) {
+      state.currentUser = null;
+    },
   },
 });
 
@@ -103,6 +117,8 @@ export const {
   handleFormChange,
   handleNestedFormChange,
   setFormError,
+  setCurrentUser,
+  clearCurrentUser,
 } = userSlice.actions;
 
 export default userSlice.reducer;

@@ -1,8 +1,10 @@
 import Active from "features/components/Active";
 import Archive from "features/components/Archive";
 import { useAppDispatch, useAppSelector, useHandleActive, useHandleArchive } from "hooks/redux";
+import { IUser } from "models/IUser";
 import React, { useEffect } from "react";
 import { fetchUsers } from "store/reducers/ActionCreators";
+import { setCurrentUser } from "store/reducers/UserSlice";
 
 function MainPage(): JSX.Element {
   const archivedUsers = useAppSelector(
@@ -24,16 +26,22 @@ function MainPage(): JSX.Element {
 
   console.log("Users in MainPage: ", users);
 
+  const handleSetCurrentUser = (user: IUser) => {
+    dispatch(setCurrentUser(user)); 
+  };
 
+ 
   return (
     <main className="main">
       <Active 
         onArchive={handleArchive}
         onActivate={handleActive} 
+        setCurrentUser={handleSetCurrentUser}
         />
       <Archive
         archivedUsers={archivedUsers}
         onActivate={handleActive}
+        setCurrentUser={handleSetCurrentUser}
       />
     </main>
   );

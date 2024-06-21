@@ -1,7 +1,9 @@
 import React from "react";
 import "./Header.scss";
+import { useAppSelector } from "hooks/redux";
 
 function Header(): JSX.Element {
+  const { currentUser } = useAppSelector(state => state.userReducer);
   return (
     <header className="header">
       <div className="header-wrapper">
@@ -15,7 +17,7 @@ function Header(): JSX.Element {
           </div>
           <div className="user-wrapper">
             <img src="" alt="#" />
-            <span className="user-name">User</span>
+            <span className="user-name">{currentUser ? currentUser.name : "Пользователь"}</span>
           </div>
         </div>
       </div>
