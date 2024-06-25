@@ -8,15 +8,12 @@ interface ActiveProps {
   onArchive: (userId: number) => void;
   onActivate: (userId: number) => void;
   setCurrentUser: (user: IUser) => void;
+
 }
 
 function Active({ onArchive, onActivate, setCurrentUser }: ActiveProps): JSX.Element {
   const { users, isLoading } = useAppSelector(state => state.userReducer);
   
-  useEffect(() => {
-    setCurrentUser(null); 
-  }, [users]);
-
   return (
     <div className="active-Users_wrapper">
       <div className="active-Users">

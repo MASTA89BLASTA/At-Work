@@ -21,9 +21,28 @@
   width: 112px;
   height: 120px;
   border-radius: 8px;
+  filter: grayscale(0);
+}
+.userCard-archived .userImg {
+  filter: grayscale(100%); 
 }
 .userCard-username {
   color: $color-blue;
+}
+.userCard-archived .userCard-username {
+  color: $color-medium-gray;
+}
+.userCard-company {
+  color: $color-medium-gray
+}
+.userCard-archived .userCard-company {
+  color: $color-light-gray
+}
+.userCard-city {
+  color: $color-light-gray;
+}
+.userCard-archived .userCard-city {
+  color: $color-very-light-gray;
 }
 .material-icons_color {
   color: $color-dark-gray;

@@ -19,7 +19,7 @@ function UserCard({
   onArchive,
   onActivate,
   isInArchive,
-  setCurrentUser
+  setCurrentUser,
 }: UserCardProps): JSX.Element {
   const [showDropdown, setShowDropdown] = useState(false);
   const city = user.address?.city ?? "";
@@ -50,16 +50,21 @@ function UserCard({
   };
 
   const handleClick = () => {
-    setCurrentUser(user);
+    if (!isInArchive) {
+      setCurrentUser(user);
+    }
   };
 
   return (
-    <div className="userCard" onClick={handleClick}>
+    <div
+      className={`userCard ${isInArchive ? "userCard-archived" : ""}`}
+      onClick={handleClick}
+    >
       <img className="userImg" src={haroldImage} alt="" />
       <div className="userCard-info_wrapper">
         <span className="userCard-username">{user.name}</span>
-        <span className="userCard-city">{city}</span>
         <span className="userCard-company">{companyName}</span>
+        <span className="userCard-city">{city}</span>
       </div>
       <div className="dropdown-container">
         <i
@@ -72,7 +77,9 @@ function UserCard({
           <ul className="dropdown-menu">
             {!isInArchive ? (
               <>
-                <li><Link to={`/profile/${user.id}`}>Редактировать</Link></li>
+                <li>
+                  <Link to={`/profile/${user.id}`}>Редактировать</Link>
+                </li>
                 <li onClick={handleArchive}>Архивировать</li>
                 <li onClick={handleHide}>Скрыть</li>
               </>
