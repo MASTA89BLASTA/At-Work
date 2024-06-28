@@ -4,17 +4,26 @@
   width: 360px;
   height: 168px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
   background-color: $color-ultra-light-gray;
   border-radius: 16px;
   margin-bottom: 20px;
   gap: 20px;
+  position: relative;
 }
-
+.userCard-wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  height: 120px;
+  width: 100%;
+  align-items: center;
+}
 .userCard-info_wrapper {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }
 
 .userImg {
@@ -24,48 +33,103 @@
   filter: grayscale(0);
 }
 .userCard-archived .userImg {
-  filter: grayscale(100%); 
+  filter: grayscale(100%);
+}
+.userCard-usersettings {
+  display: flex;
+}
+
+.userCard-information {
+  width: 180px;
+}
+
+.userCard-icon {
+  cursor: pointer;
+  .material-icons_color {
+    color: $color-dark-gray;
+    &:hover {
+      color: $color-blue;
+    }
+  }
 }
 .userCard-username {
   color: $color-blue;
+  float: left;
+  width: 100%;
+  font-size: 20px;
 }
+
 .userCard-archived .userCard-username {
   color: $color-medium-gray;
 }
 .userCard-company {
-  color: $color-medium-gray
+  color: $color-medium-gray;
+  float: left;
+  width: 100%;
 }
 .userCard-archived .userCard-company {
-  color: $color-light-gray
+  color: $color-light-gray;
 }
 .userCard-city {
   color: $color-light-gray;
+  font-size: 14px;
 }
 .userCard-archived .userCard-city {
   color: $color-very-light-gray;
 }
-.material-icons_color {
-  color: $color-dark-gray;
-  &:hover {
-    color: $color-blue;
-  }
-}
 
 .dropdown-container {
-  position: relative;
+  position: absolute;
+  // right: -250px;
+  // top: -50px;
   cursor: pointer;
+  display: none;
+}
+
+.userCard-icon.open + .dropdown-container {
+  display: block;
 }
 
 .dropdown-menu {
   position: absolute;
   width: 200px;
   height: 146px;
-  top: 100%;
-  left: 0;
+  top: 0px;
+  left: -22px;
   display: none;
+  list-style-type: none;
+  font-size: 16px;
+  z-index: 1;
+  padding: 0;
 }
 
 .dropdown-container.open,
 .dropdown-menu {
   display: block;
+}
+
+.dropdown-item {
+  padding: 12px;
+  background-color: $color-ultra-light-gray;
+  color: $color-dark-gray;
+  border-left: 1px solid $color-light-gray;
+  border-right: 1px solid $color-light-gray;
+
+  &:first-child {
+    border-top: 0.2px solid $color-light-gray;
+    border-bottom: none;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
+
+  &:last-child {
+    border-bottom: 1px solid $color-light-gray;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+  }
+}
+
+.dropdown-link {
+  text-decoration: none;
+  color: $color-dark-gray;
 }

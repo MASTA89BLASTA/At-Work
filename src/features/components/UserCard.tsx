@@ -30,21 +30,24 @@ function UserCard({
     setShowDropdown(!showDropdown);
   };
 
-  const handleArchive = () => {
+  const handleArchive = (event: React.MouseEvent) => {
+    event.stopPropagation();
     if (onArchive) {
       onArchive(user.id);
     }
     setCurrentUser(null);
   };
 
-  const handleActivate = () => {
+  const handleActivate = (event: React.MouseEvent) => {
+    event.stopPropagation();
     if (onActivate) {
       onActivate(user.id);
       setCurrentUser(null);
     }
   };
 
-  const handleHide = () => {
+  const handleHide = (event: React.MouseEvent) => {
+    event.stopPropagation();
     dispatch(removeFromActive(user.id));
     setCurrentUser(null);
   };
@@ -60,34 +63,43 @@ function UserCard({
       className={`userCard ${isInArchive ? "userCard-archived" : ""}`}
       onClick={handleClick}
     >
-      <img className="userImg" src={haroldImage} alt="" />
-      <div className="userCard-info_wrapper">
-        <span className="userCard-username">{user.name}</span>
-        <span className="userCard-company">{companyName}</span>
-        <span className="userCard-city">{city}</span>
-      </div>
-      <div className="dropdown-container">
-        <i
-          className="material-icons material-icons_color"
-          onClick={toggleDropdown}
-        >
-          more_vert
-        </i>
-        {showDropdown && (
+      <div className="userCard-wrapper">
+        <img className="userImg" src={haroldImage} alt="" />
+        <div className="userCard-info_wrapper">
+          <div className="userCard-information">
+            <div className="userCard-usersettings">
+              <span className="userCard-username">{user.name}</span>
+              <div className={`userCard-icon ${showDropdown ? "open" : ""}`} onClick={toggleDropdown}>
+                <i className="material-icons material-icons_color">more_vert</i>
+              </div>
+            </div>
+            <span className="userCard-company">{companyName}</span>
+          </div>
+          <span className="userCard-city">{city}</span>
+        </div>
+        <div className={`dropdown-container ${showDropdown ? "open" : ""}`}>
           <ul className="dropdown-menu">
             {!isInArchive ? (
               <>
-                <li>
-                  <Link to={`/profile/${user.id}`}>Редактировать</Link>
+                <li className="dropdown-item">
+                  <Link className="dropdown-link" to={`/profile/${user.id}`}>
+                    Редактировать
+                  </Link>
                 </li>
-                <li onClick={handleArchive}>Архивировать</li>
-                <li onClick={handleHide}>Скрыть</li>
+                <li className="dropdown-item" onClick={handleArchive}>
+                  Архивировать
+                </li>
+                <li className="dropdown-item" onClick={handleHide}>
+                  Скрыть
+                </li>
               </>
             ) : (
-              <li onClick={handleActivate}>Активировать</li>
+              <li className="dropdown-item" onClick={handleActivate}>
+                Активировать
+              </li>
             )}
           </ul>
-        )}
+        </div>
       </div>
     </div>
   );
