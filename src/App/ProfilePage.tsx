@@ -18,7 +18,8 @@ function ProfilePage(): JSX.Element {
   const location = useLocation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [user, setUser] = useState<IUser | undefined>(undefined);
-  const [selectedCategory, setSelectedCategory] = useState<string>("profileData");
+  const [selectedCategory, setSelectedCategory] =
+    useState<string>("profileData");
 
   useEffect(() => {
     if (profileId) {
@@ -26,7 +27,7 @@ function ProfilePage(): JSX.Element {
       setUser(foundUser);
     }
   }, [profileId, users]);
-  
+
   useEffect(() => {
     console.log("Location changed:", location);
   }, [location]);
@@ -47,7 +48,11 @@ function ProfilePage(): JSX.Element {
   const renderContent = () => {
     switch (selectedCategory) {
       case "profileData":
-        return user ? <ProfileData user={user} onSave={handleSave} /> : <p>Загрузка данных пользователя...</p>;
+        return user ? (
+          <ProfileData user={user} onSave={handleSave} />
+        ) : (
+          <p>Загрузка данных пользователя...</p>
+        );
       case "workspace":
         return <Workspace />;
       case "privacy":
@@ -58,8 +63,6 @@ function ProfilePage(): JSX.Element {
         return null;
     }
   };
-
-
 
   return (
     <div className="profile-page">
@@ -75,14 +78,25 @@ function ProfilePage(): JSX.Element {
         </span>
       </div>
       <div className="profile-page_wrapper">
-        <ProfileSettings onCategoryChange={setSelectedCategory} selectedCategory={selectedCategory}/>
+        <ProfileSettings
+          onCategoryChange={setSelectedCategory}
+          selectedCategory={selectedCategory}
+        />
         {renderContent()}
       </div>
       {isModalOpen && (
         <div className="modal">
-          <div className="modal_content">
-            <p>Изменения сохранены!</p>
-            <MyButton onClick={handleCloseModal}>Закрыть</MyButton>
+          <div className="modal-content">
+            <MyButton
+              className="modal-button material-icons myInput-clear-icon"
+              onClick={handleCloseModal}
+            >
+              close
+            </MyButton>
+            <div className="modal-icon">
+              <span className="modal-icon_check material-icons">done</span>
+            </div>
+            <p className="modal-text">Изменения сохранены!</p>
           </div>
         </div>
       )}

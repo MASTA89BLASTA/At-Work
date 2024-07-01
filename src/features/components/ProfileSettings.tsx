@@ -8,7 +8,8 @@ interface ProfileSettingsProps {
 }
 
 const ProfileSettings: React.FC<ProfileSettingsProps> = ({
-  onCategoryChange, selectedCategory
+  onCategoryChange,
+  selectedCategory,
 }) => {
   return (
     <div className="profile-settings">
