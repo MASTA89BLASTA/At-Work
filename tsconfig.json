@@ -14,6 +14,17 @@
     "typeRoots": ["./node_modules/@types"],
     "resolveJsonModule": true
   },
-  "exclude": ["node_modules", "src/**/*.png"],
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.json"]
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  },
+  "exclude": ["node_modules", "src//*.png"],
+  "include": [
+    "src//*.ts",
+    "src//*.tsx",
+    "src//*.json",
+    "src/index.tsx",
+    "src/features/components/images.d.ts"
+  ]
 }
