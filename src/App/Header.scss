@@ -8,7 +8,7 @@
   justify-content: center;
 }
 .header-wrapper {
-  width: 60%;
+  width: 1140px;
   height: 100%;
   display: flex;
   justify-content: space-between;
@@ -24,15 +24,26 @@
   display: inline-block;
 }
 
+.header-user_img {
+  width: 20px;
+  height: 20px;
+  border-radius: 50px;
+}
+
 .register-menu {
-  width: 169px;
+  width: 20%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
 .icon-wrapper,
 .user-wrapper {
-  width: 50%;
+  width: 169px;
+}
+.user-name {
+  font-size: 16px;
+  width: 100%;
+  font-weight: 500;
 }
 
 .img-logo {
@@ -42,9 +53,8 @@
   vertical-align: middle;
 }
 
-
-
-.icon-heart, .icon-bell  {
+.icon-heart,
+.icon-bell {
   font-size: 20px;
   margin-right: 15px;
   &:hover {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "hooks/redux";
 import { IUser } from "../models/IUser";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { updateUser } from "store/reducers/UserSlice";
 import ProfileData from "features/components/ProfileData";
 import ProfileSettings from "features/components/ProfileSettings";
@@ -42,9 +42,6 @@ function ProfilePage(): JSX.Element {
     setIsModalOpen(false);
   };
 
-  const handleClick = (): void => {
-    navigate(-1);
-  };
   const renderContent = () => {
     switch (selectedCategory) {
       case "profileData":
@@ -67,15 +64,14 @@ function ProfilePage(): JSX.Element {
   return (
     <div className="profile-page">
       <div className="profile-page_back">
-        <span
-          className="material-icons profile-page_btn-back"
-          onClick={handleClick}
+        <Link
+          className="material-icons profile-page_btn-back" to="/"
         >
           arrow_back
-        </span>
-        <span className="profile-page_back-text" onClick={handleClick}>
+          <span className="profile-page_back-text" >
           Назад
         </span>
+        </Link>
       </div>
       <div className="profile-page_wrapper">
         <ProfileSettings

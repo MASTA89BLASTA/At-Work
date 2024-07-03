@@ -7,7 +7,7 @@ import {
   setFormData,
   handleFormChange,
   handleNestedFormChange,
-  setFormError
+  setFormError,
 } from "../../store/reducers/UserSlice";
 import { cleanPhoneNumber } from "features/utils/utils";
 import { useAppDispatch, useAppSelector } from "hooks/redux";
@@ -20,21 +20,20 @@ interface ProfileDataProps {
 function ProfileData({ user, onSave }: ProfileDataProps): JSX.Element {
   const dispatch = useAppDispatch();
   const formData = useAppSelector(state => state.userReducer.formData);
-  const formError = useAppSelector(state => state.userReducer.formError)
+  const formError = useAppSelector(state => state.userReducer.formError);
 
   useEffect(() => {
     dispatch(setFormData(user || null));
   }, [user, dispatch]);
 
-  useEffect(() => {
-    setFormError();
-  }, [formData]);
+  // useEffect(() => {
+  //   setFormError();
+  // }, [formData]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>, id: string) => {
     const { value } = e.target;
     dispatch(handleFormChange({ id, value }));
-    setFormError();;
-
+    setFormError();
   };
 
   const handleNestedChange = (
@@ -48,11 +47,11 @@ function ProfileData({ user, onSave }: ProfileDataProps): JSX.Element {
   };
 
   const handleSave = () => {
-    if (formError) {
+    if (!formError) {
       dispatch(setFormError());
+      onSave(formData);
       return;
     }
-    onSave(formData);
   };
 
   const handleClear = (id: string) => {
@@ -64,12 +63,11 @@ function ProfileData({ user, onSave }: ProfileDataProps): JSX.Element {
     dispatch(handleNestedFormChange({ parentKey, childKey, value: "" }));
   };
 
-
   return (
     <div className="profile-data">
       <div className="profile-data_wrapper">
         <h1 className="profile-data_h1">Данные профиля</h1>
-        
+
         <form action="">
           <div className="profile-data_form-group">
             <label className="profile-data_label" htmlFor="name">
