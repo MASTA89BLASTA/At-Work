@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { IUser } from "models/IUser";
 import "./styles/UserCard.scss";
-import haroldImage from "./img//harold.png";
+import haroldImage from "./img/harold.png";
 import { useAppDispatch } from "hooks/redux";
 import { removeFromActive } from "store/reducers/UserSlice";
 import { Link } from "react-router-dom";

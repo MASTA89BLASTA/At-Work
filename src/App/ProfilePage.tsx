@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "hooks/redux";
 import { IUser } from "../models/IUser";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
-import { updateUser } from "store/reducers/UserSlice";
+import { setCurrentUser, setFormError, updateUser } from "store/reducers/UserSlice";
 import ProfileData from "features/components/ProfileData";
 import ProfileSettings from "features/components/ProfileSettings";
 import Workspace from "features/components/Workspace";
 import Privacy from "features/components/Privacy";
 import Security from "features/components/Security";
 import MyButton from "features/components/UI/button/MyButton";
+import { fetchUsers } from "store/reducers/ActionCreators";
 
 function ProfilePage(): JSX.Element {
   const { profileId } = useParams();
@@ -25,12 +26,20 @@ function ProfilePage(): JSX.Element {
     if (profileId) {
       const foundUser = users.find(user => user.id === +profileId);
       setUser(foundUser);
+      dispatch(setCurrentUser(foundUser || null));
+      dispatch(setFormError(''));
     }
   }, [profileId, users]);
 
   useEffect(() => {
     console.log("Location changed:", location);
   }, [location]);
+
+  useEffect(() => {
+    if (!users.length) {
+      dispatch(fetchUsers());
+    }
+  }, [dispatch, users.length]);
 
   const handleSave = (updatedUser: IUser) => {
     dispatch(updateUser(updatedUser));

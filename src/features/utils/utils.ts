@@ -57,6 +57,6 @@ export const handleUserAction = (
   }
 
   if (currentUser?.id === userId) {
-    dispatch(setCurrentUser(null)); // Сбрасываем текущего пользователя, если он был выбран
+    dispatch(setCurrentUser(null));
   }
 };

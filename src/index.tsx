@@ -8,7 +8,7 @@ import { BrowserRouter } from "react-router-dom";
 
 const store = setupStore();
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <Provider store={store}>
     <BrowserRouter>
       <App />

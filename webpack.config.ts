@@ -42,7 +42,7 @@ export default (
       compress: true,
       historyApiFallback: true,
       // proxy: {
-      //   "/api": "http://localhost:4000",
+      //   "/api": "http://localhost:3000",
       //   "/img": "http://localhost:3000",
       // },
     },

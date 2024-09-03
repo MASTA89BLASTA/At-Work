@@ -21,7 +21,7 @@
   display: flex;
   cursor: pointer;
   height: 68px;
-  width: 80%;
+  width: 1160px;
   align-items: center;
 }
 .profile-page_back-text {
@@ -33,7 +33,7 @@
   font-size: 18px;
   padding-bottom: 2px;
   position: relative;
-  bottom: 3px;
+  bottom: 4px;
 }
 .profile-page_btn-back {
   font-size: 20px;
@@ -110,7 +110,6 @@
   font-weight: 500;
   color: $color-dark-gray;
   position: relative;
-
   margin-top: 45px;
 }
 .profile-data_h1::after {
