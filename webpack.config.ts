@@ -1,9 +1,14 @@
 import path from "path";
 import webpack from "webpack";
+import { fileURLToPath } from "url";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import postcssPresetEnv from "postcss-preset-env";
 import type { Configuration as WebpackConfiguration } from "webpack";
 import type { Configuration as DevServerConfiguration } from "webpack-dev-server";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 type Mode = "production" | "development";
 
@@ -12,9 +17,7 @@ interface EnvVariables {
   port: number;
 }
 
-export default (
-  env: EnvVariables
-): WebpackConfiguration & DevServerConfiguration => {
+export default (env: EnvVariables): WebpackConfiguration & DevServerConfiguration => {
   const mode = process.env.NODE_ENV || "development";
   const devMode = mode === "development";
   const target = devMode ? "web" : "browserslist";
@@ -67,7 +70,7 @@ export default (
               loader: "postcss-loader",
               options: {
                 postcssOptions: {
-                  plugins: [require("postcss-preset-env")],
+                  plugins: [postcssPresetEnv()],
                 },
               },
             },

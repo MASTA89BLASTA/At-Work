@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.tsx",
   "scripts": {
-    "start": "webpack-dev-server --open ",
-    "build": "webpack"
+    "start": "webpack serve --open --config webpack.config.ts",
+    "build": "webpack --config webpack.config.ts"
   },
   "keywords": [],
   "author": "",
