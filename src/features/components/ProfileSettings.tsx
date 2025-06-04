@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles/Profile.scss";
-import haroldImage from "./img/harold.png";
+import userImg from "../components/img/user.png";
 
 interface ProfileSettingsProps {
   onCategoryChange: (category: string) => void;
@@ -14,7 +14,7 @@ const ProfileSettings: React.FC<ProfileSettingsProps> = ({
   return (
     <div className="profile-settings">
       <div className="profile-settings_wrapper">
-        <img className="profile-userImg" src={haroldImage} alt="" />
+        <img className="profile-userImg" src={userImg} alt="" />
         <div className="profile-settings_categories">
           <ul className="profile-settings_items">
             <li

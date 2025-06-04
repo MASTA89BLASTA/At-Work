@@ -5,6 +5,7 @@
   display: flex;
   justify-content: center;
 }
+
 .active-Users,
 .arhive-Users {
   display: flex;
@@ -13,6 +14,8 @@
   width: 100%;
   height: auto;
 }
+
+
 .active-h1,
 .arhive-h1 {
   // width: 61.5%;
@@ -24,6 +27,77 @@
 
   margin-top: 45px;
 }
+
+
+
+@media (max-width: 1200px) {
+  .active-Users,
+  .arhive-Users {
+    width: 1000px;
+  }
+  .active-h1,
+  .arhive-h1 {
+    width: 1000px;
+  }
+}
+@media (max-width: 1030px) {
+  .active-h1,
+  .arhive-h1 {
+    width: 890px;
+  }
+}
+
+@media (max-width: 920px) {
+  .active-h1,
+  .arhive-h1  {
+    width: 790px;
+  }
+}
+
+@media (max-width: 825px) {
+  .active-h1,
+  .arhive-h1   {
+    width: 740px;
+  }
+}
+@media (max-width: 760px) {
+  .active-h1,
+  .arhive-h1   {
+    width: 666px;
+  }
+}
+@media (max-width: 720px) {
+  .active-h1,
+  .arhive-h1   {
+    width: 500px;
+  }
+}
+
+@media (max-width: 525px) {
+  .active-h1,
+  .arhive-h1 {
+    width: 400px;
+  }
+}
+
+@media (max-width: 420px) {
+  .active-h1,
+  .arhive-h1 {
+    width: 365px;
+  }
+}
+
+@media (max-width: 375px) {
+  .active-h1,
+  .arhive-h1 {
+    width: 344px;
+  }
+}
+
+
+
+
+
 
 .active-h1::after,
 .arhive-h1::after {

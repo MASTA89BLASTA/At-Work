@@ -31,6 +31,7 @@
   height: 120px;
   border-radius: 8px;
   filter: grayscale(0);
+  object-fit: cover;
 }
 .userCard-archived .userImg {
   filter: grayscale(100%);
@@ -127,9 +128,80 @@
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
   }
+  &:hover {
+    color: $color-blue;
+  }
 }
 
 .dropdown-link {
   text-decoration: none;
   color: $color-dark-gray;
+  &:hover {
+    color: $color-blue;
+  }
+}
+
+@media (max-width: 760px) {
+  .userCard {
+    width: 162px;
+    height: 242px;
+    gap: 16px;
+  }
+  .userCard-wrapper {
+    flex-direction: column;
+    height: 88%;
+    justify-content: space-between;
+  }
+  .userCard-info_wrapper {
+    justify-content: space-evenly;
+    margin-top: 12px;
+  }
+  .userImg {
+    width: 130px;
+    height: 120px;
+  }
+  .userCard-username {
+    font-size: 18px;
+    width: 108px;
+  }
+  .userCard-company {
+    margin-top: 5px;
+    font-size: 14px;
+    width: 108px;
+  }
+  .material-icons {
+    font-size: 19px;
+  }
+
+  .userCard-information {
+    width: 100%;
+  }
+
+  .userCard-city {
+    margin-top: 24px;
+    font-size: 10px;
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    width: 144px;
+    height: 121px;
+    top: 147px;
+    left: 0px;
+    display: none;
+    list-style-type: none;
+    font-size: 14px;
+    z-index: 1;
+    padding: 0;
+  }
+  .dropdown-container.open,
+  .dropdown-menu {
+    display: block;
+  }
+}
+
+@media (max-width: 720px) {
+  .dropdown-menu {
+    left: -73px;
+  }
 }

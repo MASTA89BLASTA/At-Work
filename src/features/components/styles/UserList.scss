@@ -1,9 +1,64 @@
 .userList {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  // width: 61.5%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 360px);
+  gap: 20px;
   width: 1160px;
-  height: 445px;
   margin-top: 27px;
+  justify-content: space-between;
+}
+
+@media (max-width: 1200px) {
+  .userList {
+    width: 1000px;
+  }
+}
+
+@media (max-width: 1030px) {
+  .userList {
+    width: 890px;
+  }
+}
+
+@media (max-width: 920px) {
+  .userList {
+    width: 790px;
+  }
+}
+
+@media (max-width: 825px) {
+  .userList {
+    width: 740px;
+  }
+}
+
+@media (max-width: 760px) {
+  .userList {
+    width: 665px;
+    grid-template-columns: repeat(auto-fill, 162px);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 720px) {
+  .userList {
+    width: 500px;
+    
+  }
+}
+
+@media (max-width: 525px) {
+  .userList {
+    width: 400px;
+  }
+}
+
+@media (max-width: 420px) {
+  .userList {
+    width: 365px;
+  }
+}
+@media (max-width: 375px) {
+  .userList {
+    width: 344px;
+  }
 }

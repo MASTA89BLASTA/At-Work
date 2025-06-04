@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { IUser } from "models/IUser";
 import "./styles/UserCard.scss";
-import haroldImage from "./img/harold.png";
+import userImg from "../../features/components/img/user.png"
 import { useAppDispatch } from "hooks/redux";
 import { removeFromActive } from "store/reducers/UserSlice";
 import { Link } from "react-router-dom";
@@ -64,16 +64,16 @@ function UserCard({
       onClick={handleClick}
     >
       <div className="userCard-wrapper">
-        <img className="userImg" src={haroldImage} alt="" />
+        <img className="userImg" src={userImg} alt="" />
         <div className="userCard-info_wrapper">
           <div className="userCard-information">
             <div className="userCard-usersettings">
-              <span className="userCard-username">{user.name}</span>
+              <span className="userCard-username">{user.username.length <= 9 ? user.username : `${user.username.slice(0, 9)}`}</span>
               <div className={`userCard-icon ${showDropdown ? "open" : ""}`} onClick={toggleDropdown}>
                 <i className="material-icons material-icons_color">more_vert</i>
               </div>
             </div>
-            <span className="userCard-company">{companyName}</span>
+            <span className="userCard-company">{companyName.length <= 12 ? companyName : `${companyName.slice(0, 12)}`}</span>
           </div>
           <span className="userCard-city">{city}</span>
         </div>
