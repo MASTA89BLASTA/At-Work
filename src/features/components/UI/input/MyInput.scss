@@ -32,3 +32,21 @@
     display: block;
   }
 }
+
+@media (max-width: 920px) {
+  .myInput-container {
+    width: 92%;
+  }
+}
+
+@media (max-width: 490px) {
+  .myInput-container {
+    width: 100%;
+    .myInput {
+      width: 91%;
+      margin-top: 10px;
+      padding: 10px 8px 10px 16px;
+    }
+  }
+}
+

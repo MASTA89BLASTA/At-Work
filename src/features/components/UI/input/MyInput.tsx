@@ -42,6 +42,7 @@ const MyInput: React.FC<MyInputProps> = ({
   return (
     <div className={`myInput-container ${isFocused ? "active" : ""}`}>
       <input
+        id = {id}
         ref={inputRef}
         onFocus={handleFocus}
         onBlur={handleBlur}
