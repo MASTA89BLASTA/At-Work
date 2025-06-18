@@ -73,6 +73,7 @@
 .icon-bell {
   width: 20px;
   height: 20px;
+  margin-top: 4px;
   font-size: 20px;
   margin-right: 15px;
   align-self: center;
@@ -83,9 +84,15 @@
   }
 }
 
-.icon-bell {
-  margin-top: 4px;
-  height: 24px;
+.icon-heart {
+  stroke: $color-dark-gray;
+  fill: $color-ultra-light-gray;
+  height: 27px;
+  &:hover {
+    stroke: $color-blue;
+    fill: $color-ultra-light-gray;
+    cursor: pointer;
+  }
 }
 
 @media (max-width: 1200px) {
@@ -165,7 +172,4 @@
   .header-wrapper {
     width: 344px;
   }
-  // .register-menu {
-  //   width: 194px;
-  // }
 }

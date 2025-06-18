@@ -19,15 +19,14 @@ function ProfilePage(): JSX.Element {
   const location = useLocation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [user, setUser] = useState<IUser | undefined>(undefined);
-  const [selectedCategory, setSelectedCategory] =
-    useState<string>("profileData");
+  const [selectedCategory, setSelectedCategory] = useState<string>("profileData");
 
   useEffect(() => {
     if (profileId) {
       const foundUser = users.find(user => user.id === +profileId);
       setUser(foundUser);
       dispatch(setCurrentUser(foundUser || null));
-      dispatch(setFormError(''));
+      dispatch(setFormError(""));
     }
   }, [profileId, users]);
 
@@ -73,13 +72,19 @@ function ProfilePage(): JSX.Element {
   return (
     <div className="profile-page">
       <div className="profile-page_back">
-        <Link
-          className="material-icons profile-page_btn-back" to="/"
-        >
-          arrow_back
-          <span className="profile-page_back-text" >
-          Назад
-        </span>
+        <Link className="profile-page_btn-back" to="/">
+          <svg
+            className="profile-page_icon-back"
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24">
+            <path
+              fill="currentColor"
+              d="M19 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H19v-2z"
+            />
+          </svg>
+          <span className="profile-page_back-text">Назад</span>
         </Link>
       </div>
       <div className="profile-page_wrapper">
@@ -94,8 +99,7 @@ function ProfilePage(): JSX.Element {
           <div className="modal-content">
             <MyButton
               className="modal-button material-icons myInput-clear-icon"
-              onClick={handleCloseModal}
-            >
+              onClick={handleCloseModal}>
               close
             </MyButton>
             <div className="modal-icon">

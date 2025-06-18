@@ -11,21 +11,46 @@
     border-radius: 50px;
     padding: 11px 8px 11px 16px;
     margin-top: 15px;
+    font-size: 14px;
     &:focus {
       outline: none !important;
     }
   }
 
+  // .myInput-clear-icon {
+  //   position: absolute;
+  //   right: 0px;
+  //   font-size: 16px;
+  //   top: 50%;
+  //   transform: translateY(3%) translateX(80%);
+  //   cursor: pointer;
+  //   display: none;
+  //   color: $color-medium-gray;
+  //   outline: none !important;
+  // }
+
   .myInput-clear-icon {
+    all: unset;
     position: absolute;
     right: 0px;
-    font-size: 16px;
+    // font-size: 16px;
     top: 50%;
-    transform: translateY(3%) translateX(80%);
+    transform: translateY(-5%) translateX(80%);
+    background: none;
+    border: none;
+    // padding: 4px;
     cursor: pointer;
     display: none;
     color: $color-medium-gray;
     outline: none !important;
+
+    svg {
+      display: block;
+      width: 16px;
+      height: 16px;
+      stroke: $color-medium-gray;
+      transition: stroke 0.2s ease;
+    }
   }
 
   &.active .myInput-clear-icon {
@@ -50,3 +75,8 @@
   }
 }
 
+.myInput::-webkit-credentials-auto-fill-button {
+  visibility: hidden;
+  display: none !important;
+  -webkit-appearance: none;
+}

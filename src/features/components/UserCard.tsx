@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { IUser } from "models/IUser";
 import "./styles/UserCard.scss";
-import userImg from "../../features/components/img/user.png"
+import userImg from "../../features/components/img/user.png";
 import { useAppDispatch } from "hooks/redux";
 import { removeFromActive } from "store/reducers/UserSlice";
 import { Link } from "react-router-dom";
@@ -59,21 +59,34 @@ function UserCard({
   };
 
   return (
-    <div
-      className={`userCard ${isInArchive ? "userCard-archived" : ""}`}
-      onClick={handleClick}
-    >
+    <div className={`userCard ${isInArchive ? "userCard-archived" : ""}`} onClick={handleClick}>
       <div className="userCard-wrapper">
         <img className="userImg" src={userImg} alt="" />
         <div className="userCard-info_wrapper">
           <div className="userCard-information">
             <div className="userCard-usersettings">
-              <span className="userCard-username">{user.username.length <= 9 ? user.username : `${user.username.slice(0, 9)}`}</span>
-              <div className={`userCard-icon ${showDropdown ? "open" : ""}`} onClick={toggleDropdown}>
-                <i className="material-icons material-icons_color">more_vert</i>
+              <span className="userCard-username">
+                {user.username.length <= 9 ? user.username : `${user.username.slice(0, 9)}`}
+              </span>
+              <div
+                className={`userCard-icon ${showDropdown ? "open" : ""}`}
+                onClick={toggleDropdown}>
+                <svg
+                  className="userCard-icon-svg"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24">
+                  <path
+                    fill="currentColor"
+                    d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
+                  />
+                </svg>
               </div>
             </div>
-            <span className="userCard-company">{companyName.length <= 12 ? companyName : `${companyName.slice(0, 12)}`}</span>
+            <span className="userCard-company">
+              {companyName.length <= 12 ? companyName : `${companyName.slice(0, 12)}`}
+            </span>
           </div>
           <span className="userCard-city">{city}</span>
         </div>
