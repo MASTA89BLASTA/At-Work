@@ -1,0 +1,52 @@
+@import "../../../../App/vars.scss";
+//Modal
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background-color: $color-ultra-light-gray;
+
+  border: 1px solid #888;
+  width: 310px;
+  height: 211px;
+  max-width: 500px;
+  border-radius: 16px;
+  padding: 0;
+}
+
+.modal-icon {
+  margin-top: 10px;
+  background-color: #c6f4c6;
+  width: 59.33px;
+  height: 59.43px;
+  border-radius: 16px;
+  color: $color-ultra-light-gray;
+  display: flex;
+  align-items: center;
+}
+.modal-icon_check {
+  position: relative;
+  left: 7px;
+  bottom: 7px;
+  font-size: 60px;
+}
+.modal-text {
+  font-size: 20px;
+  color: $color-medium-gray;
+  font-family: "Manrope";
+}

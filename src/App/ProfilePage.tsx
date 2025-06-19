@@ -8,7 +8,7 @@ import ProfileSettings from "features/components/ProfileSettings";
 import Workspace from "features/components/Workspace";
 import Privacy from "features/components/Privacy";
 import Security from "features/components/Security";
-import MyButton from "features/components/UI/button/MyButton";
+import Modal from "features/components/UI/modal/Modal";
 import { fetchUsers } from "store/reducers/apiFetchUsers";
 
 function ProfilePage(): JSX.Element {
@@ -94,21 +94,7 @@ function ProfilePage(): JSX.Element {
         />
         {renderContent()}
       </div>
-      {isModalOpen && (
-        <div className="modal">
-          <div className="modal-content">
-            <MyButton
-              className="modal-button material-icons myInput-clear-icon"
-              onClick={handleCloseModal}>
-              close
-            </MyButton>
-            <div className="modal-icon">
-              <span className="modal-icon_check material-icons">done</span>
-            </div>
-            <p className="modal-text">Изменения сохранены!</p>
-          </div>
-        </div>
-      )}
+      {isModalOpen && <Modal onClose={handleCloseModal} />}
     </div>
   );
 }
