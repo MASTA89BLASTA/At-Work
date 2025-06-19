@@ -9,7 +9,7 @@ import Workspace from "features/components/Workspace";
 import Privacy from "features/components/Privacy";
 import Security from "features/components/Security";
 import MyButton from "features/components/UI/button/MyButton";
-import { fetchUsers } from "store/reducers/ActionCreators";
+import { fetchUsers } from "store/reducers/apiFetchUsers";
 
 function ProfilePage(): JSX.Element {
   const { profileId } = useParams();

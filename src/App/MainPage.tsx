@@ -3,7 +3,7 @@ import Archive from "features/components/Archive";
 import { useAppDispatch, useAppSelector, useHandleActive, useHandleArchive } from "hooks/redux";
 import { IUser } from "models/IUser";
 import React, { useEffect } from "react";
-import { fetchUsers } from "store/reducers/ActionCreators";
+import { fetchUsers } from "store/reducers/apiFetchUsers";
 import { setCurrentUser } from "store/reducers/UserSlice";
 
 function MainPage(): JSX.Element {
