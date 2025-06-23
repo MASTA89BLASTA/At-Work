@@ -17,28 +17,14 @@
     }
   }
 
-  // .myInput-clear-icon {
-  //   position: absolute;
-  //   right: 0px;
-  //   font-size: 16px;
-  //   top: 50%;
-  //   transform: translateY(3%) translateX(80%);
-  //   cursor: pointer;
-  //   display: none;
-  //   color: $color-medium-gray;
-  //   outline: none !important;
-  // }
-
   .myInput-clear-icon {
     all: unset;
     position: absolute;
     right: 0px;
-    // font-size: 16px;
     top: 50%;
     transform: translateY(-5%) translateX(80%);
     background: none;
     border: none;
-    // padding: 4px;
     cursor: pointer;
     display: none;
     color: $color-medium-gray;
@@ -71,6 +57,9 @@
       width: 91%;
       margin-top: 10px;
       padding: 10px 8px 10px 16px;
+    }
+    .myInput-clear-icon {
+      right: 25px;
     }
   }
 }
